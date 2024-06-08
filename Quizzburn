@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Test de Burn-Out</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+  th { background-color: #f2f2f2; }
+  .resultat { margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h2>Test de Burn-Out</h2>
+<form id="burnoutForm">
+  <table>
+    <tr>
+      <th>Question</th>
+      <th>Jamais (0)</th>
+      <th>Rarement (1)</th>
+      <th>Parfois (2)</th>
+      <th>Souvent (3)</th>
+      <th>Toujours (4)</th>
+    </tr>
+    <tr>
+      <td>Vous sentez-vous épuisé(e) même après une bonne nuit de sommeil ?</td>
+      <td><input type="radio" name="q1" value="0"></td>
+      <td><input type="radio" name="q1" value="1"></td>
+      <td><input type="radio" name="q1" value="2"></td>
+      <td><input type="radio" name="q1" value="3"></td>
+      <td><input type="radio" name="q1" value="4"></td>
+    </tr>
+    <!-- Répétez pour les autres questions -->
+  </table>
+  <input type="button" onclick="calculerScore()" value="Calculer le Score">
+</form>
+
+<div class="resultat" id="resultat"></div>
+
+<script>
+function calculerScore() {
+  var score = 0;
+  var form = document.forms['burnoutForm'];
+  for(var i = 1; i <= 5; i++) {
+    var question = form['q' + i];
+    for(var j = 0; j < question.length; j++) {
+      if(question[j].checked) {
+        score += parseInt(question[j].value);
+      }
+    }
+  }
+  document.getElementById('resultat').innerHTML = 'Score Total : ' + score;
+}
+</script>
+
+</body>
+</html>
